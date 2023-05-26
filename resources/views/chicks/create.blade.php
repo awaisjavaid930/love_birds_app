@@ -7,7 +7,7 @@
                     Add New Chick
                 </h2>
                 <div class="p-3 border">
-                    <form action="{{ route('chick.store') }}" method="post">
+                    <form action="{{ route('chick.store') }}" method="post" id="addChick">
                         @csrf
                         <input type="hidden" name="parent_id" value="{{ $pair->id }}" />
                         <div class="mb-3">
@@ -42,4 +42,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    $(document).ready(function() {
+        $("#addChick").validate({
+            rules: {
+                title: "required",
+                breed_no: "required",
+            },
+            messages: {
+                title: "title is requred",
+                breed_no: "breed no  is required",
+            }
+        });
+    });
 @endsection

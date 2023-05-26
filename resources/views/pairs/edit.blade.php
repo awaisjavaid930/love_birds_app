@@ -7,7 +7,7 @@
                     Edit Pair Detail
                 </h2>
                 <div class="p-3 border">
-                    <form action="{{ route('pairs.update' , $pair->id) }}" method="post">
+                    <form action="{{ route('pairs.update' , $pair->id) }}" method="post" id="editPair">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -42,4 +42,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    $(document).ready(function() {
+        $("#editPair").validate({
+            rules: {
+                title: "required",
+                cage_no: "required",
+            },
+            messages: {
+                title: "title is requred",
+                cage_no: "Cage no  is required",
+            }
+        });
+    });
 @endsection

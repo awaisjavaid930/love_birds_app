@@ -7,7 +7,7 @@
                     Add New Pair
                 </h2>
                 <div class="p-3 border">
-                    <form action="{{ route('pairs.store') }}" method="post">
+                    <form action="{{ route('pairs.store') }}" method="post" id="addPair">
                         @csrf
                         <div class="mb-3">
                             <label for="title" class="form-label">Pair Name</label>
@@ -43,4 +43,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    $(document).ready(function() {
+        $("#addPair").validate({
+            rules: {
+                title: "required",
+                cage_no: "required",
+            },
+            messages: {
+                title: "title is requred",
+                cage_no: "Cage no  is required",
+            }
+        });
+    });
 @endsection

@@ -7,7 +7,7 @@
                     Edit Chick
                 </h2>
                 <div class="p-3 border">
-                    <form action="{{ route('chick.update' , $chick->id ) }}" method="post">
+                    <form action="{{ route('chick.update' , $chick->id ) }}" method="post" id="editChick">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="parent_id" value="{{ $chick->parent_id }}" />
@@ -43,4 +43,18 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    $(document).ready(function() {
+        $("#editChick").validate({
+            rules: {
+                title: "required",
+                breed_no: "required",
+            },
+            messages: {
+                title: "title is requred",
+                breed_no: "breed no  is required",
+            }
+        });
+    });
 @endsection
